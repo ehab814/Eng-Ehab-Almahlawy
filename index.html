@@ -159,6 +159,7 @@
             font-weight: 800;
             color: var(--white);
             letter-spacing: 1px;
+            z-index: 1002;
         }
 
         .nav-links {
@@ -196,6 +197,37 @@
 
         .nav-links a:hover {
             color: var(--accent);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1002;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background: var(--white);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
         }
 
         /* Section Base */
@@ -678,7 +710,9 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: all 0.3s;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 0.9rem;
         }
 
@@ -729,6 +763,7 @@
             justify-content: center;
             font-size: 1.2rem;
             transition: all 0.3s;
+            text-decoration: none;
         }
 
         .footer-social a:hover {
@@ -736,7 +771,7 @@
             color: var(--primary);
         }
 
-   /* Responsive */
+        /* Responsive */
         @media (max-width: 1200px) {
             .hero-title { font-size: 4rem; }
             .section-title { font-size: 2.5rem; }
@@ -839,6 +874,7 @@
             }
             .btn-primary, .btn-secondary { 
                 width: 100%; 
+                justify-content: center;
                 text-align: center; 
                 padding: 1rem 2rem; 
             }
@@ -900,12 +936,17 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="nav-logo">EEM</div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+                <li><a href="#experience" onclick="closeMobileMenu()">Experience</a></li>
+                <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
+                <li><a href="#education" onclick="closeMobileMenu()">Education</a></li>
+                <li><a href="#certifications" onclick="closeMobileMenu()">Certifications</a></li>
             </ul>
         </div>
     </nav>
@@ -1113,14 +1154,10 @@
             <h2 class="section-title">Certifications & Training</h2>
         </div>
         <div class="cert-grid">
-            <!-- SCE Registration Certificate -->
-            <div class="cert-card" onclick="openModal(this)">
-                <img src="./sce-registration.jpg" alt="SCE Registration" class="cert-image">
-                <div class="cert-overlay">
-                    <div class="cert-info">
-                        <h3>SCE Registration</h3>
-                        <p>Saudi Council of Engineers - Click to view</p>
-                    </div>
+            <!-- Placeholder cards - replace with actual images -->
+            <div class="cert-card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
+                <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 3rem;">
+                    <i class="fas fa-certificate"></i>
                 </div>
                 <div class="cert-details">
                     <div class="cert-title">Saudi Council of Engineers</div>
@@ -1128,14 +1165,9 @@
                 </div>
             </div>
 
-            <!-- Degree Certificate -->
-            <div class="cert-card" onclick="openModal(this)">
-                <img src="./degree-certificate.jpg" alt="Bachelor's Degree" class="cert-image">
-                <div class="cert-overlay">
-                    <div class="cert-info">
-                        <h3>Bachelor's Degree</h3>
-                        <p>Tanta University - Click to view</p>
-                    </div>
+            <div class="cert-card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
+                <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 3rem;">
+                    <i class="fas fa-graduation-cap"></i>
                 </div>
                 <div class="cert-details">
                     <div class="cert-title">Bachelor in Civil Engineering</div>
@@ -1143,59 +1175,9 @@
                 </div>
             </div>
 
-            <!-- Degree Verification -->
-            <div class="cert-card" onclick="openModal(this)">
-                <img src="./degree-verification.jpg" alt="Degree Verification" class="cert-image">
-                <div class="cert-overlay">
-                    <div class="cert-info">
-                        <h3>Degree Verification</h3>
-                        <p>Mosadaqa Authentication - Click to view</p>
-                    </div>
-                </div>
-                <div class="cert-details">
-                    <div class="cert-title">Official Degree Verification</div>
-                    <div class="cert-issuer">Mosadaqa Platform • Authenticated</div>
-                </div>
-            </div>
-
-            <!-- Egyptian Engineers Syndicate -->
-            <div class="cert-card" onclick="openModal(this)">
-                <img src="./egyptian-syndicate.jpg" alt="Egyptian Engineers Syndicate" class="cert-image">
-                <div class="cert-overlay">
-                    <div class="cert-info">
-                        <h3>Engineers Syndicate</h3>
-                        <p>Egyptian Registration - Click to view</p>
-                    </div>
-                </div>
-                <div class="cert-details">
-                    <div class="cert-title">Egyptian Engineers Syndicate</div>
-                    <div class="cert-issuer">Certified Civil Engineer • 2020</div>
-                </div>
-            </div>
-
-            <!-- Military Service Certificate -->
-            <div class="cert-card" onclick="openModal(this)">
-                <img src="./military-service.jpg" alt="Military Service" class="cert-image">
-                <div class="cert-overlay">
-                    <div class="cert-info">
-                        <h3>Military Service</h3>
-                        <p>Egyptian Armed Forces - Click to view</p>
-                    </div>
-                </div>
-                <div class="cert-details">
-                    <div class="cert-title">Military Service Completion</div>
-                    <div class="cert-issuer">Egyptian Armed Forces • 2020-2021</div>
-                </div>
-            </div>
-
-            <!-- AutoCAD Certificate -->
-            <div class="cert-card" onclick="openModal(this)">
-                <img src="./autocad-certificate.jpg" alt="AutoCAD 2D" class="cert-image">
-                <div class="cert-overlay">
-                    <div class="cert-info">
-                        <h3>AutoCAD Professional</h3>
-                        <p>2D Design Course - Click to view</p>
-                    </div>
+            <div class="cert-card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
+                <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 3rem;">
+                    <i class="fas fa-certificate"></i>
                 </div>
                 <div class="cert-details">
                     <div class="cert-title">AutoCAD 2D Comprehensive</div>
@@ -1203,44 +1185,9 @@
                 </div>
             </div>
 
-            <!-- Work Experience Certificate 1 -->
-            <div class="cert-card" onclick="openModal(this)">
-                <img src="./work-exp-1.jpg" alt="Work Experience" class="cert-image">
-                <div class="cert-overlay">
-                    <div class="cert-info">
-                        <h3>Work Experience</h3>
-                        <p>Mohamed Abdel Hakeem Co. - Click to view</p>
-                    </div>
-                </div>
-                <div class="cert-details">
-                    <div class="cert-title">Experience Certificate</div>
-                    <div class="cert-issuer">Mohamed Abdel Hakeem Company • 2020-2021</div>
-                </div>
-            </div>
-
-            <!-- Work Experience Certificate 2 -->
-            <div class="cert-card" onclick="openModal(this)">
-                <img src="./work-exp-2.jpg" alt="Work Experience" class="cert-image">
-                <div class="cert-overlay">
-                    <div class="cert-info">
-                        <h3>Work Experience</h3>
-                        <p>Tatweer Development - Click to view</p>
-                    </div>
-                </div>
-                <div class="cert-details">
-                    <div class="cert-title">Experience Certificate</div>
-                    <div class="cert-issuer">Tatweer Development Company • 2022-2023</div>
-                </div>
-            </div>
-
-            <!-- Accounting Certificate -->
-            <div class="cert-card" onclick="openModal(this)">
-                <img src="./accounting-certificate.jpg" alt="Accounting Course" class="cert-image">
-                <div class="cert-overlay">
-                    <div class="cert-info">
-                        <h3>Accounting Course</h3>
-                        <p>For Non-Accountants - Click to view</p>
-                    </div>
+            <div class="cert-card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
+                <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 3rem;">
+                    <i class="fas fa-calculator"></i>
                 </div>
                 <div class="cert-details">
                     <div class="cert-title">Accounting for Non-Accountants</div>
@@ -1248,29 +1195,13 @@
                 </div>
             </div>
 
-            <!-- Excel Mastery Certificate -->
-            <div class="cert-card" onclick="openModal(this)">
-                <img src="./excel-certificate.jpg" alt="Excel Mastery" class="cert-image">
-                <div class="cert-overlay">
-                    <div class="cert-info">
-                        <h3>Excel Mastery</h3>
-                        <p>Advanced Level - Click to view</p>
-                    </div>
+            <div class="cert-card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
+                <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 3rem;">
+                    <i class="fas fa-file-excel"></i>
                 </div>
                 <div class="cert-details">
                     <div class="cert-title">Mastering Excel</div>
                     <div class="cert-issuer">Edraak Platform • 2025</div>
-                </div>
-            </div>
-
-            <!-- Additional Certifications (Without .) -->
-            <div class="cert-card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
-                <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 3rem;">
-                    <i class="fas fa-certificate"></i>
-                </div>
-                <div class="cert-details">
-                    <div class="cert-title">ICDL Certification</div>
-                    <div class="cert-issuer">International Computer Driving License</div>
                 </div>
             </div>
 
@@ -1283,50 +1214,22 @@
                     <div class="cert-issuer">Advanced Training • Preparing for PMP 2025</div>
                 </div>
             </div>
-
-            <div class="cert-card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
-                <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 3rem;">
-                    <i class="fas fa-calculator"></i>
-                </div>
-                <div class="cert-details">
-                    <div class="cert-title">Cost Estimation</div>
-                    <div class="cert-issuer">Eng. Mohamed Soror • Riyadh</div>
-                </div>
-            </div>
-
-            <div class="cert-card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
-                <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 3rem;">
-                    <i class="fas fa-building"></i>
-                </div>
-                <div class="cert-details">
-                    <div class="cert-title">BIM Management</div>
-                    <div class="cert-issuer">Online Certification • In Progress</div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Modal for Certificate . -->
-    <div id="certModal" class="modal" onclick="closeModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <img id="modalImage" class="modal-image" src="" alt="Certificate">
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <h2>Let's Build Something Great</h2>
+        <p>Available for consulting and full-time opportunities in Saudi Arabia</p>
+        <div class="cta-buttons">
+            <a href="#" class="btn-primary" download>
+                <i class="fas fa-download"></i> Download CV
+            </a>
+            <a href="mailto:ehabsayedahmed2@gmail.com" class="btn-secondary">
+                <i class="fas fa-envelope"></i> Get In Touch
+            </a>
         </div>
     </div>
-
-    <!-- CTA Section -->
-  <div class="cta-section">
-    <h2>Let's Build Something Great</h2>
-    <p>Available for consulting and full-time opportunities in Saudi Arabia</p>
-    <div class="cta-buttons">
-        <a href="https://ehab814.github.io/Eng-Ehab-Almahlawy/ehabAlmahalawyCV.pdf" class="btn-primary" download>
-            <i class="fas fa-download"></i> Download CV
-        </a>
-        <a href="mailto:ehabsayedahmed2@gmail.com" class="btn-secondary">
-            <i class="fas fa-envelope"></i> Get In Touch
-        </a>
-    </div>
-</div>
 
     <!-- Footer -->
     <footer>
@@ -1340,6 +1243,23 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            navLinks.classList.toggle('active');
+            toggle.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            navLinks.classList.remove('active');
+            toggle.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
         // Navbar visibility on scroll
         let lastScroll = 0;
         const navbar = document.getElementById('navbar');
@@ -1386,31 +1306,6 @@
                     link.classList.add('active');
                 }
             });
-        });
-
-        // Certificate Modal Functions
-        function openModal(card) {
-            const img = card.querySelector('.cert-image');
-            if (img) {
-                const modal = document.getElementById('certModal');
-                const modalImg = document.getElementById('modalImage');
-                modal.classList.add('active');
-                modalImg.src = img.src;
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('certModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
         });
     </script>
 </body>
