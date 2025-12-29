@@ -736,7 +736,7 @@
             color: var(--primary);
         }
 
-      /* Responsive */
+   /* Responsive */
         @media (max-width: 1200px) {
             .hero-title { font-size: 4rem; }
             .section-title { font-size: 2.5rem; }
@@ -760,7 +760,9 @@
             .hero-cta { padding: 0.8rem 2rem; font-size: 0.8rem; }
             .scroll-indicator { bottom: 2rem; }
             
-            .mobile-menu-toggle { display: flex; }
+            .mobile-menu-toggle { 
+                display: flex;
+            }
             .nav-links { 
                 position: fixed;
                 top: 0;
@@ -774,15 +776,20 @@
                 gap: 2rem;
                 transition: right 0.3s ease;
                 padding: 2rem;
+                z-index: 1001;
             }
             .nav-links.active {
                 right: 0;
+            }
+            .nav-links li {
+                width: 100%;
             }
             .nav-links a {
                 font-size: 1.2rem;
                 width: 100%;
                 text-align: center;
                 padding: 1rem;
+                display: block;
             }
             .nav-container { padding: 1rem 1.5rem; }
             
